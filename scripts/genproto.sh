@@ -37,7 +37,7 @@ for dir in ${DIRS}; do
     protoc --gofast_out=. -I=".:${GOGOPROTO_PATH}:${RAFT_ROOT_DIR}/..:${RAFT_ROOT_DIR}" \
       --plugin="${GOFAST_BIN}" ./**/*.proto
 
-    sed -i.bak -E 's|"raft/raftpb"|"go.etcd.io/etcd/raft/v3/raftpb"|g' ./**/*.pb.go
+    sed -i.bak -E 's|"raft/raftpb"|"github.com/Y77CH/raft/raftpb"|g' ./**/*.pb.go
     sed -i.bak -E 's|"google/protobuf"|"github.com/gogo/protobuf/protoc-gen-gogo/descriptor"|g' ./**/*.pb.go
 
     rm -f ./**/*.bak

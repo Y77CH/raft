@@ -20,8 +20,8 @@ import (
 
 	"github.com/cockroachdb/datadriven"
 
-	"go.etcd.io/raft/v3"
-	"go.etcd.io/raft/v3/raftpb"
+	"github.com/Y77CH/raft"
+	"github.com/Y77CH/raft/raftpb"
 )
 
 func (env *InteractionEnv) handleProcessReady(t *testing.T, d datadriven.TestData) error {

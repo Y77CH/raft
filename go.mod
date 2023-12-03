@@ -1,4 +1,4 @@
-module go.etcd.io/raft/v3
+module github.com/Y77CH/raft
 
 go 1.21
 

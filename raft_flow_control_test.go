@@ -17,7 +17,7 @@ package raft
 import (
 	"testing"
 
-	pb "go.etcd.io/raft/v3/raftpb"
+	pb "github.com/Y77CH/raft/raftpb"
 )
 
 // TestMsgAppFlowControlFull ensures:
