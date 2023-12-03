@@ -1245,8 +1245,8 @@ func stepLeader(r *raft, m pb.Message) error {
 		// Profile the data and data size
 		for i := range m.Entries {
 			e := &m.Entries[i]
-			r.logger.Info("MSG_PROFILE: length: %d", len(e.Data))
-			r.logger.Infof("MSG_PROFILE: data: " + string(e.Data))
+			r.logger.Warningf("MSG_PROFILE: length: %d", len(e.Data))
+			r.logger.Warning("MSG_PROFILE: data: " + string(e.Data))
 		}
 		if len(m.Entries) == 0 {
 			r.logger.Panicf("%x stepped empty MsgProp", r.id)
