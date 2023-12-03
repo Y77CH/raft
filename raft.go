@@ -21,6 +21,7 @@ import (
 	"fmt"
 	"math"
 	"math/big"
+	"os"
 	"sort"
 	"strings"
 	"sync"
@@ -1243,10 +1244,18 @@ func stepLeader(r *raft, m pb.Message) error {
 		return nil
 	case pb.MsgProp:
 		// Profile the data and data size
-		for i := range m.Entries {
-			e := &m.Entries[i]
-			r.logger.Warningf("MSG_PROFILE: length: %d", len(e.Data))
-			r.logger.Warning("MSG_PROFILE: data: " + string(e.Data))
+		file, err := os.OpenFile("/users/chen2394/cockroach/msg.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		if err != nil {
+			panic(err)
+		}
+		defer file.Close()
+		for _, entry := range m.Entries {
+			// str := hex.EncodeToString(entry.Data)
+			// _, err := file.WriteString(fmt.Sprintf("Length: %d, Data: %s\n", len(entry.Data), str))
+			_, err := file.WriteString(fmt.Sprintf("Length: %d\n", len(entry.Data)))
+			if err != nil {
+				panic(err)
+			}
 		}
 		if len(m.Entries) == 0 {
 			r.logger.Panicf("%x stepped empty MsgProp", r.id)
